@@ -1,4 +1,4 @@
-package io.github.relativobr;
+package io.github.relativobr.resource;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import org.bukkit.Material;

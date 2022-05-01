@@ -3,24 +3,12 @@
 
  <groupId>io.github.RelativoBR</groupId>
  <artifactId>SupremeExpansionLib</artifactId>
- <version>1.0</version>
- <packaging>jar</packaging>
+ <version>1.0.0</version>
 
+ <packaging>jar</packaging>
  <name>Supreme Expansion Lib</name>
  <description>SupremeExpansionLib to the Central Repository</description>
  <url>https://github.com/RelativoBR/SupremeExpansionLib</url>
- <licenses>
-  <license>
-   <name>The Apache Software License, Version 2.0</name>
-   <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-  </license>
- </licenses>
- <developers>
-  <developer>
-   <name>RelativoBR</name>
-   <organizationUrl>https://github.com/RelativoBR</organizationUrl>
-  </developer>
- </developers>
  <scm>
   <connection>scm:git:git://github.com/RelativoBR/SupremeExpansionLib.git</connection>
   <developerConnection>scm:git:ssh://github.com:RelativoBR/SupremeExpansionLib.git</developerConnection>
@@ -39,9 +27,11 @@
  </distributionManagement>
 
  <properties>
+  <maven.compiler.source>1.8</maven.compiler.source>
+  <maven.compiler.target>1.8</maven.compiler.target>
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  <author>RelativoBR</author>
  </properties>
-
 
  <repositories>
 

@@ -1,8 +1,8 @@
-package io.github.relativobr;
+package io.github.relativobr.resource;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 
-public class CoreLife {
+public class SupremeCoreLife {
 
   public static final SlimefunItemStack RESOURCE_CORE_POTATO = new SlimefunItemStack(
       "RESOURCE_CORE_POTATO",

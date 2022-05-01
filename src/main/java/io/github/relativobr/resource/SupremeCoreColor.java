@@ -1,9 +1,9 @@
-package io.github.relativobr;
+package io.github.relativobr.resource;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 
 
-public class CoreColor {
+public class SupremeCoreColor {
 
 
   public static final SlimefunItemStack RESOURCE_CORE_RED = new SlimefunItemStack(

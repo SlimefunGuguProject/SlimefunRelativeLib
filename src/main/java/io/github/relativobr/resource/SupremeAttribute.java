@@ -1,9 +1,9 @@
-package io.github.relativobr;
+package io.github.relativobr.resource;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import org.bukkit.enchantments.Enchantment;
 
-public class Attribute {
+public class SupremeAttribute {
 
   public static final SlimefunItemStack ATTRIBUTE_MAGIC = new SlimefunItemStack("ATTRIBUTE_MAGIC",
       "16d1c19b0dabdf7360fbd18df9dfd1c615da2f8d2c84fc4216565d9c5dd", "&aAttribute Magic", "",
@@ -24,7 +24,7 @@ public class Attribute {
       "&7A super impetus attribute with special effects");
 
   public static SlimefunItemStack getMagic() {
-    final SlimefunItemStack attributeMagic = Attribute.ATTRIBUTE_MAGIC;
+    final SlimefunItemStack attributeMagic = SupremeAttribute.ATTRIBUTE_MAGIC;
     attributeMagic.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 20);
     attributeMagic.addUnsafeEnchantment(Enchantment.DURABILITY, 20);
     attributeMagic.addUnsafeEnchantment(Enchantment.MENDING, 10);
@@ -32,7 +32,7 @@ public class Attribute {
   }
 
   public static SlimefunItemStack getBomb() {
-    final SlimefunItemStack attributeBomb = Attribute.ATTRIBUTE_BOMB;
+    final SlimefunItemStack attributeBomb = SupremeAttribute.ATTRIBUTE_BOMB;
     attributeBomb.addUnsafeEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 20);
     attributeBomb.addUnsafeEnchantment(Enchantment.PROTECTION_FIRE, 20);
     attributeBomb.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, 20);
@@ -41,14 +41,14 @@ public class Attribute {
   }
 
   public static SlimefunItemStack getFortune() {
-    final SlimefunItemStack attributeFortune = Attribute.ATTRIBUTE_FORTUNE;
+    final SlimefunItemStack attributeFortune = SupremeAttribute.ATTRIBUTE_FORTUNE;
     attributeFortune.addUnsafeEnchantment(Enchantment.DIG_SPEED, 20);
     attributeFortune.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 10);
     return attributeFortune;
   }
 
   public static SlimefunItemStack getImpetus() {
-    final SlimefunItemStack attributeImpetus = Attribute.ATTRIBUTE_IMPETUS;
+    final SlimefunItemStack attributeImpetus = SupremeAttribute.ATTRIBUTE_IMPETUS;
     attributeImpetus.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 20);
     attributeImpetus.addUnsafeEnchantment(Enchantment.FIRE_ASPECT, 10);
     attributeImpetus.addUnsafeEnchantment(Enchantment.LOOT_BONUS_MOBS, 10);

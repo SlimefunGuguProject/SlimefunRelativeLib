@@ -1,9 +1,9 @@
-package io.github.relativobr;
+package io.github.relativobr.resource;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 
 
-public class CoreBlock {
+public class SupremeCoreBlock {
 
 
   public static final SlimefunItemStack RESOURCE_CORE_STONE = new SlimefunItemStack(

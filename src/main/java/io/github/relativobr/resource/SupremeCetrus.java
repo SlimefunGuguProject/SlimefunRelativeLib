@@ -1,8 +1,8 @@
-package io.github.relativobr;
+package io.github.relativobr.resource;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 
-public class Cetrus {
+public class SupremeCetrus {
 
   public static final SlimefunItemStack CETRUS_LUX = new SlimefunItemStack("CETRUS_LUX",
       "92cb6e51c461e7359526bea5e06209cddde7c6469a819f3405cf0a038c159502", "&aCetrus Lux", "",

@@ -1,9 +1,9 @@
-package io.github.relativobr;
+package io.github.relativobr.resource;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 
 
-public class CoreNature {
+public class SupremeCoreNature {
 
 
   public static final SlimefunItemStack RESOURCE_CORE_OAK_LOG = new SlimefunItemStack(
