@@ -1,8 +1,8 @@
-package io.github.relativobr.resource;
+package com.github.relativobr.resource;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 
-public class SupremeCore {
+public class SupremeMainCore {
 
   public static final SlimefunItemStack CORE_OF_LIFE = new SlimefunItemStack("CORE_OF_LIFE",
       "faff2eb498e5c6a04484f0c9f785b448479ab213df95ec91176a308a12add70", "&aCore of Life", "",
