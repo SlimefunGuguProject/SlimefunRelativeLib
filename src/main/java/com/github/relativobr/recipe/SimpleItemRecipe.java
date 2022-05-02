@@ -1,31 +1,30 @@
-package com.github.relativobr.util;
+package com.github.relativobr.recipe;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public final class SimpleMaterialRecipe {
+public final class SimpleItemRecipe {
 
 
-    private Material material;
-    private Material mainItem;
+    private ItemStack material;
+    private ItemStack mainItem;
 
 
     public ItemStack[] getInput(){
         return new ItemStack[]{
-                new ItemStack(this.material)
+                this.material
         };
     }
 
 
     public ItemStack[] getOutput(){
         return new ItemStack[]{
-                new ItemStack(this.mainItem)
+                this.mainItem
         };
     }
 

@@ -1,4 +1,4 @@
-package com.github.relativobr.util;
+package com.github.relativobr.recipe;
 
 import lombok.Getter;
 

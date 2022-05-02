@@ -5,7 +5,7 @@ import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 import javax.annotation.Nonnull;
 
-public class Energy {
+public class UtilEnergy {
 
   private static final DecimalFormat FORMAT = new DecimalFormat("###,###,##0.00",
       DecimalFormatSymbols.getInstance(Locale.ENGLISH));

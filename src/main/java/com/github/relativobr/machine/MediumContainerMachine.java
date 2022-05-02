@@ -2,8 +2,8 @@ package com.github.relativobr.machine;
 
 import static java.util.Objects.nonNull;
 
-import com.github.relativobr.util.InventoryRecipe;
-import com.github.relativobr.util.SimpleRecipe;
+import com.github.relativobr.recipe.InventoryRecipe;
+import com.github.relativobr.recipe.SimpleRecipe;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;

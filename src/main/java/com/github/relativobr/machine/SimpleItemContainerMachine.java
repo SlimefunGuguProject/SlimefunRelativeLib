@@ -2,7 +2,7 @@ package com.github.relativobr.machine;
 
 import static java.util.Objects.nonNull;
 
-import com.github.relativobr.util.SimpleItemRecipe;
+import com.github.relativobr.recipe.SimpleItemRecipe;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
