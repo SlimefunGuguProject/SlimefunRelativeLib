@@ -1,4 +1,4 @@
-package com.github.relativobr.machine;
+package com.github.relativobr.electric;
 
 import com.github.relativobr.util.CheckBlock;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;

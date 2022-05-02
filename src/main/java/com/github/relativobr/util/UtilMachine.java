@@ -1,4 +1,4 @@
-package com.github.relativobr.machine;
+package com.github.relativobr.util;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import org.bukkit.inventory.ItemStack;

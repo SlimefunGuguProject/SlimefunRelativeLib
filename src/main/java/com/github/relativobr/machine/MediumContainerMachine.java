@@ -241,7 +241,7 @@ public class MediumContainerMachine extends AContainer implements NotHopperable,
       int ticksLeft = getProgressTime(b);
       ItemStack[] result = machineRecipe.getOutput();
 
-      //verifica se inventário está cheio
+      //checks if inventory is full
       int fullSlots = 0;
       List<Integer> slots = new LinkedList<>();
       for (int slot : getOutputSlots()) {
