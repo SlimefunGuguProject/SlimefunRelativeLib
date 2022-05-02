@@ -3,6 +3,9 @@
 Slimefun Addons Tools Lib by RelativoBR
 
 
+[![](https://jitpack.io/v/RelativoBR/SlimefunRelativeLib.svg)](https://jitpack.io/#RelativoBR/SlimefunRelativeLib)
+
+
 # Add your addon
 
 ```
