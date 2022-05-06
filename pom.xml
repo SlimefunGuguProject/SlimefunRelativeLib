@@ -9,8 +9,8 @@
 
   <packaging>jar</packaging>
   <name>SlimefunRelativeLib</name>
-  <description>Slimefun Addons Tools Lib by RelativoBR</description>
-  <url>https://github.com/RelativoBR/SupremeExpansionLib</url>
+  <description>Slimefun Addons Tools Lib by RelativoBR (Modified)</description>
+  <url>https://github.com/ybw0014/SlimefunRelativeLib</url>
 
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
