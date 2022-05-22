@@ -6,11 +6,22 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.Waterlogged;
 
-public class CheckBlock {
+public class UtilCheckBlock {
 
   public static boolean checkUnderWater(@Nonnull Block b) {
     return b.getRelative(BlockFace.DOWN).getType().equals(Material.WATER);
+  }
+
+  public static boolean checkInWater(@Nonnull Block b) {
+    BlockData blockData = b.getBlockData();
+    if (blockData instanceof Waterlogged) {
+      Waterlogged waterLogged = (Waterlogged) blockData;
+      return waterLogged.isWaterlogged();
+    }
+    return false;
   }
 
   public static boolean checkUnderFire(@Nonnull Block b) {
@@ -28,9 +39,9 @@ public class CheckBlock {
       return false;
     } else {
       return b.getRelative(BlockFace.NORTH).getType().equals(Material.AIR)
-          && b.getRelative(BlockFace.EAST).getType().equals(Material.AIR)
-          && b.getRelative(BlockFace.SOUTH).getType().equals(Material.AIR)
-          && b.getRelative(BlockFace.WEST).getType().equals(Material.AIR);
+          || b.getRelative(BlockFace.EAST).getType().equals(Material.AIR)
+          || b.getRelative(BlockFace.SOUTH).getType().equals(Material.AIR)
+          || b.getRelative(BlockFace.WEST).getType().equals(Material.AIR);
     }
   }
 

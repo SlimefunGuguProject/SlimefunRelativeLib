@@ -1,6 +1,6 @@
 package com.github.relativobr.electric;
 
-import com.github.relativobr.util.CheckBlock;
+import com.github.relativobr.util.UtilCheckBlock;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -64,19 +64,19 @@ public final class EnergyGenerator extends SlimefunItem implements EnergyNetProv
     if (this.type == Type.EVERY) {
       return true;
     } else if (this.type == Type.DAY) {
-      return CheckBlock.checkDay(b) && CheckBlock.checkSky(b);
+      return UtilCheckBlock.checkDay(b) && UtilCheckBlock.checkSky(b);
     } else if (this.type == Type.NIGHT) {
-      return CheckBlock.checkNight(b) && CheckBlock.checkSky(b);
+      return UtilCheckBlock.checkNight(b) && UtilCheckBlock.checkSky(b);
     } else if (this.type == Type.SKY) {
-      return CheckBlock.checkSky(b);
+      return UtilCheckBlock.checkSky(b);
     } else if (this.type == Type.FIRE) {
-      return CheckBlock.checkUnderFire(b);
+      return UtilCheckBlock.checkUnderFire(b);
     } else if (this.type == Type.WATER) {
-      return CheckBlock.checkUnderWater(b);
+      return UtilCheckBlock.checkUnderWater(b);
     } else if (this.type == Type.WIND) {
-      return CheckBlock.checkWind(b);
+      return UtilCheckBlock.checkWind(b);
     } else if (this.type == Type.DARK) {
-      return CheckBlock.checkDark(b);
+      return UtilCheckBlock.checkDark(b);
     }
     return false;
   }
