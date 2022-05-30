@@ -9,9 +9,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.NotHopperable;
 import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
-import io.github.thebusybiscuit.slimefun4.core.machines.MachineProcessor;
-import io.github.thebusybiscuit.slimefun4.implementation.operations.CraftingOperation;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,8 +19,6 @@ import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
-import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
@@ -34,9 +29,7 @@ public class SimpleItemContainerMachine extends AContainer implements NotHoppera
     private static Map<Block, MachineRecipe> processing = new HashMap<>();
     private static Map<Block, Integer> progress = new HashMap<>();
     private int timeProcess = 15;
-    private boolean resultSpeed = false;
     private String machineIdentifier = "SimpleItemContainerMachine";
-    private final MachineProcessor<CraftingOperation> processor = new MachineProcessor<>(this);
 
     @ParametersAreNonnullByDefault
     protected SimpleItemContainerMachine(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
@@ -60,15 +53,6 @@ public class SimpleItemContainerMachine extends AContainer implements NotHoppera
 
     public int getTimeProcess(){
         return this.timeProcess;
-    }
-
-    public SimpleItemContainerMachine setResultSpeed(boolean resultSpeed){
-        this.resultSpeed = resultSpeed;
-        return this;
-    }
-
-    public boolean getResultSpeed(){
-        return this.resultSpeed;
     }
 
     @Override
@@ -102,38 +86,6 @@ public class SimpleItemContainerMachine extends AContainer implements NotHoppera
                 return true;
             }
         });
-    }
-
-    @Override
-    protected void tick(Block b) {
-        BlockMenu inv = BlockStorage.getInventory(b);
-        CraftingOperation currentOperation = processor.getOperation(b);
-
-        if (currentOperation != null) {
-            if (takeCharge(b.getLocation())) {
-
-                if (!currentOperation.isFinished()) {
-                    processor.updateProgressBar(inv, 22, currentOperation);
-                    currentOperation.addProgress(getSpeed());
-                } else {
-                    inv.replaceExistingItem(22, new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, " "));
-
-                    for (ItemStack output : currentOperation.getResults()) {
-                        ItemStack clone = output.clone();
-                        clone.setAmount(getResultSpeed() ? getSpeed() : 1);
-                        inv.pushItem(clone, getOutputSlots());
-                    }
-
-                    processor.endOperation(b);
-                }
-            }
-        } else {
-            MachineRecipe next = findNextRecipe(inv);
-
-            if (next != null) {
-                processor.startOperation(b, new CraftingOperation(next));
-            }
-        }
     }
 
     @Nonnull
