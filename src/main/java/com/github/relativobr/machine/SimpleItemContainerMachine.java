@@ -34,7 +34,6 @@ public class SimpleItemContainerMachine extends AContainer implements NotHoppera
     private static Map<Block, MachineRecipe> processing = new HashMap<>();
     private static Map<Block, Integer> progress = new HashMap<>();
     private int timeProcess = 15;
-    private boolean resultSpeed = false;
     private String machineIdentifier = "SimpleItemContainerMachine";
     private final MachineProcessor<CraftingOperation> processor = new MachineProcessor<>(this);
 
@@ -60,15 +59,6 @@ public class SimpleItemContainerMachine extends AContainer implements NotHoppera
 
     public int getTimeProcess(){
         return this.timeProcess;
-    }
-
-    public SimpleItemContainerMachine setResultSpeed(boolean resultSpeed){
-        this.resultSpeed = resultSpeed;
-        return this;
-    }
-
-    public boolean getResultSpeed(){
-        return this.resultSpeed;
     }
 
     @Override
@@ -119,9 +109,7 @@ public class SimpleItemContainerMachine extends AContainer implements NotHoppera
                     inv.replaceExistingItem(22, new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, " "));
 
                     for (ItemStack output : currentOperation.getResults()) {
-                        ItemStack clone = output.clone();
-                        clone.setAmount(getResultSpeed() ? getSpeed() : 1);
-                        inv.pushItem(clone, getOutputSlots());
+                        inv.pushItem(output.clone(), getOutputSlots());
                     }
 
                     processor.endOperation(b);
