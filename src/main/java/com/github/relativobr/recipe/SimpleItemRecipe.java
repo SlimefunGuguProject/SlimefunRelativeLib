@@ -5,6 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.bukkit.inventory.ItemStack;
 
+/**
+ * Deprecated, use only AbstractItemRecipe
+ */
+@Deprecated
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

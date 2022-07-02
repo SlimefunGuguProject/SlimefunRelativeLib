@@ -2,8 +2,8 @@ package com.github.relativobr.machine;
 
 import static java.util.Objects.nonNull;
 
+import com.github.relativobr.recipe.AbstractItemRecipe;
 import com.github.relativobr.recipe.InventoryRecipe;
-import com.github.relativobr.recipe.SimpleRecipe;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -35,14 +35,21 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
+/**
+ * Machine that can use up to 9 items in the input and only 1 item in the output
+ */
 public class MediumContainerMachine extends AContainer implements NotHopperable, RecipeDisplayItem {
 
   private final Map<Block, MachineRecipe> processing = new HashMap<Block, MachineRecipe>();
   private final Map<Block, Integer> progressItem = new HashMap<Block, Integer>();
   private final Map<Block, Integer> progressTime = new HashMap<Block, Integer>();
-  public List<SimpleRecipe> machineRecipes = new ArrayList<>();
+  public List<AbstractItemRecipe> machineRecipes = new ArrayList<>();
   private int timeProcess = 15;
   private String machineIdentifier = "MediumContainerMachine";
+
+  public int getSizeProcessInput(){
+    return 9;
+  }
 
   @ParametersAreNonnullByDefault
   public MediumContainerMachine(ItemGroup category, SlimefunItemStack item, RecipeType recipeType,
@@ -109,39 +116,39 @@ public class MediumContainerMachine extends AContainer implements NotHopperable,
     };
   }
 
-  private static void invalidInput(BlockMenu menu) {
-    menu.replaceExistingItem(InventoryRecipe.MEDIUM_STATUS_SLOT, new CustomItemStack(
+  private void invalidInput(BlockMenu menu) {
+    menu.replaceExistingItem(getStatusSlot(), new CustomItemStack(
         Material.RED_STAINED_GLASS_PANE,
         "&cInput a valid material to start"
     ));
   }
 
-  private static void invalidOutput(BlockMenu menu) {
-    menu.replaceExistingItem(InventoryRecipe.MEDIUM_STATUS_SLOT, new CustomItemStack(
+  private void invalidOutput(BlockMenu menu) {
+    menu.replaceExistingItem(getStatusSlot(), new CustomItemStack(
         Material.RED_STAINED_GLASS_PANE,
         "&cOutput is full"
     ));
   }
 
-  private static void noEnergyStart(BlockMenu menu) {
-    menu.replaceExistingItem(InventoryRecipe.MEDIUM_STATUS_SLOT, new CustomItemStack(
+  private void noEnergyStart(BlockMenu menu) {
+    menu.replaceExistingItem(getStatusSlot(), new CustomItemStack(
         Material.RED_STAINED_GLASS_PANE, "&cConnect energy to start"
     ));
   }
 
-  private static void noEnergyContinue(BlockMenu menu, ItemStack material) {
-    menu.replaceExistingItem(InventoryRecipe.MEDIUM_STATUS_SLOT, new CustomItemStack(
+  private void noEnergyContinue(BlockMenu menu, ItemStack material) {
+    menu.replaceExistingItem(getStatusSlot(), new CustomItemStack(
         material, "&cConnect energy to continue"
     ));
   }
 
-  private static void noMaterialContinue(BlockMenu menu, ItemStack material) {
-    menu.replaceExistingItem(InventoryRecipe.MEDIUM_STATUS_SLOT, new CustomItemStack(
+  private void noMaterialContinue(BlockMenu menu, ItemStack material) {
+    menu.replaceExistingItem(getStatusSlot(), new CustomItemStack(
         material, "&cDeposit more materials to continue"
     ));
   }
 
-  public MediumContainerMachine setMachineRecipes(@Nonnull List<SimpleRecipe> machineRecipes) {
+  public MediumContainerMachine setMachineRecipes(@Nonnull List<AbstractItemRecipe> machineRecipes) {
     this.machineRecipes = machineRecipes;
     return this;
   }
@@ -158,22 +165,22 @@ public class MediumContainerMachine extends AContainer implements NotHopperable,
 
   @Override
   protected void constructMenu(BlockMenuPreset preset) {
-    for (int i : InventoryRecipe.MEDIUM_BORDER) {
+    for (int i : getBorderSlots()) {
       preset.addItem(i, new CustomItemStack(Material.GRAY_STAINED_GLASS_PANE, " "),
           ChestMenuUtils.getEmptyClickHandler());
     }
 
-    for (int i : InventoryRecipe.MEDIUM_INPUT_BORDER) {
+    for (int i : getInputBorderSlots()) {
       preset.addItem(i, new CustomItemStack(Material.CYAN_STAINED_GLASS_PANE, " "),
           ChestMenuUtils.getEmptyClickHandler());
     }
 
-    for (int i : InventoryRecipe.MEDIUM_OUTPUT_BORDER) {
+    for (int i : getOutputBorderSlots()) {
       preset.addItem(i, new CustomItemStack(Material.ORANGE_STAINED_GLASS_PANE, " "),
           ChestMenuUtils.getEmptyClickHandler());
     }
 
-    preset.addItem(InventoryRecipe.MEDIUM_STATUS_SLOT,
+    preset.addItem(getStatusSlot(),
         new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, " "),
         ChestMenuUtils.getEmptyClickHandler());
 
@@ -210,6 +217,22 @@ public class MediumContainerMachine extends AContainer implements NotHopperable,
   @Override
   public int[] getOutputSlots() {
     return InventoryRecipe.MEDIUM_OUTPUT;
+  }
+
+  public int getStatusSlot(){
+    return InventoryRecipe.MEDIUM_STATUS_SLOT;
+  }
+
+  public int[] getBorderSlots(){
+    return InventoryRecipe.MEDIUM_BORDER;
+  }
+
+  public int[] getInputBorderSlots(){
+    return InventoryRecipe.MEDIUM_INPUT_BORDER;
+  }
+
+  public int[] getOutputBorderSlots(){
+    return InventoryRecipe.MEDIUM_OUTPUT_BORDER;
   }
 
   @Nonnull
@@ -264,11 +287,11 @@ public class MediumContainerMachine extends AContainer implements NotHopperable,
 
         startProcessTicks(b, inv, ticks, ticksLeft, result[0]);
 
-      } else if ((ticksLeft <= 0) && (processItem >= 9) && this.takeCharge(b.getLocation())) {
+      } else if ((ticksLeft <= 0) && (processItem >= getSizeProcessInput()) && this.takeCharge(b.getLocation())) {
 
         endProcessTicks(b, inv, result);
 
-      } else if ((ticksLeft <= 0) && (processItem < 9) && this.takeCharge(b.getLocation())) {
+      } else if ((ticksLeft <= 0) && (processItem < getSizeProcessInput()) && this.takeCharge(b.getLocation())) {
 
         checkMaterialProgress(b, inv, machineRecipe, processItem, ticks, ticksLeft, result);
 
@@ -310,10 +333,10 @@ public class MediumContainerMachine extends AContainer implements NotHopperable,
         time = 0;
       }
       progressTime.put(b, time);
-      ChestMenuUtils.updateProgressbar(inv, InventoryRecipe.MEDIUM_STATUS_SLOT, ticksLeft, ticks,
+      ChestMenuUtils.updateProgressbar(inv, getStatusSlot(), ticksLeft, ticks,
           result[0]);
 
-      if (processItem < 9 && recipeInput[processItem] != null) {
+      if (processItem < getSizeProcessInput() && recipeInput[processItem] != null) {
         ItemStack itemStack = recipeInput[processItem];
         if (consumeItem(b, itemStack)) {
           progressItem.put(b, processItem + 1);
@@ -336,7 +359,7 @@ public class MediumContainerMachine extends AContainer implements NotHopperable,
 
   private void startProcessTicks(Block b, BlockMenu inv, int ticks, int ticksLeft,
       ItemStack itemStack) {
-    ChestMenuUtils.updateProgressbar(inv, InventoryRecipe.MEDIUM_STATUS_SLOT, ticksLeft, ticks,
+    ChestMenuUtils.updateProgressbar(inv, getStatusSlot(), ticksLeft, ticks,
         itemStack);
     int time = ticksLeft - this.getSpeed();
     if (time < 0) {
@@ -349,7 +372,7 @@ public class MediumContainerMachine extends AContainer implements NotHopperable,
   private void checkMaterialProgress(Block b, BlockMenu inv, MachineRecipe machineRecipe,
       int processItem, int ticks, int ticksLeft, ItemStack[] result) {
     noMaterialContinue(inv, result[0]);
-    for (int i = processItem; i < 9; i++) {
+    for (int i = processItem; i < getSizeProcessInput(); i++) {
       ItemStack itemStack = machineRecipe.getInput()[i];
       if (consumeItem(b, itemStack)) {
         if (ticksLeft > 0) {
@@ -360,7 +383,7 @@ public class MediumContainerMachine extends AContainer implements NotHopperable,
           progressTime.put(b, time);
         }
         progressItem.put(b, i + 1);
-        ChestMenuUtils.updateProgressbar(inv, InventoryRecipe.MEDIUM_STATUS_SLOT, ticksLeft, ticks,
+        ChestMenuUtils.updateProgressbar(inv, getStatusSlot(), ticksLeft, ticks,
             result[0]);
       }
     }
@@ -384,9 +407,9 @@ public class MediumContainerMachine extends AContainer implements NotHopperable,
 
     int[] inputSlots = this.getInputSlots();
 
-    for (SimpleRecipe recipe : machineRecipes) {
+    for (AbstractItemRecipe recipe : machineRecipes) {
 
-      ItemStack[] recipeInput = recipe.getRecipe();
+      ItemStack[] recipeInput = recipe.getInput();
 
       int foundSize = 0;
       for (ItemStack itemStack : recipeInput) {
@@ -398,8 +421,8 @@ public class MediumContainerMachine extends AContainer implements NotHopperable,
         }
       }
 
-      if (foundSize == 9) {
-        return new MachineRecipe(timeProcess, recipeInput, new ItemStack[]{recipe.getItem()});
+      if (foundSize == getSizeProcessInput()) {
+        return new MachineRecipe(timeProcess, recipeInput, recipe.getOutput());
       }
 
     }
@@ -414,7 +437,7 @@ public class MediumContainerMachine extends AContainer implements NotHopperable,
     List<ItemStack> displayRecipes = new ArrayList();
     machineRecipes.forEach(recipe -> {
       displayRecipes.add(new CustomItemStack(Material.GRAY_STAINED_GLASS_PANE, " "));
-      displayRecipes.add(recipe.getItem());
+      displayRecipes.add(recipe.getFirstItemOutput());
     });
     return displayRecipes;
   }

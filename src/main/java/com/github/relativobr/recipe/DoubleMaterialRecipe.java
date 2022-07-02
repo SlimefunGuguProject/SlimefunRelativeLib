@@ -6,6 +6,10 @@ import lombok.NoArgsConstructor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
+/**
+ * Deprecated, use only AbstractItemRecipe
+ */
+@Deprecated
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
