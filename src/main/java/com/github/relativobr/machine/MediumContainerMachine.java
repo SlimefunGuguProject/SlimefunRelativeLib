@@ -130,8 +130,8 @@ public class MediumContainerMachine extends AContainer implements NotHopperable,
       public void onBlockBreak(Block b) {
         BlockMenu inv = BlockStorage.getInventory(b);
         if (inv != null) {
-          inv.dropItems(b.getLocation(), MediumContainerMachine.super.getInputSlots());
-          inv.dropItems(b.getLocation(), MediumContainerMachine.super.getOutputSlots());
+          inv.dropItems(b.getLocation(), getInputSlots());
+          inv.dropItems(b.getLocation(), getOutputSlots());
         }
         progressTime.remove(b);
         processing.remove(b);
