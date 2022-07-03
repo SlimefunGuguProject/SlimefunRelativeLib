@@ -171,7 +171,7 @@ public class UtilCheckBlock {
     }
   }
 
-  public boolean checkItemInInventory(@Nonnull ItemStack itemStack, @Nonnull Block targetBlockInventory) {
+  public static boolean checkItemInInventory(@Nonnull ItemStack itemStack, @Nonnull Block targetBlockInventory) {
     if (!isInvalidInventory(targetBlockInventory)) {
       BlockState targetState = targetBlockInventory.getState();
       if (targetState instanceof InventoryHolder) {
@@ -182,7 +182,7 @@ public class UtilCheckBlock {
     return false;
   }
 
-  public void removeItemInInventory(@Nonnull ItemStack itemStack, @Nonnull Block targetBlockInventory) {
+  public static void removeItemInInventory(@Nonnull ItemStack itemStack, @Nonnull Block targetBlockInventory) {
     if (!isInvalidInventory(targetBlockInventory)) {
       BlockState targetState = targetBlockInventory.getState();
       if (targetState instanceof InventoryHolder) {
@@ -192,7 +192,7 @@ public class UtilCheckBlock {
     }
   }
 
-  public void pushItemInInventory(@Nonnull ItemStack itemStack, @Nonnull Block targetBlockInventory) {
+  public static void pushItemInInventory(@Nonnull ItemStack itemStack, @Nonnull Block targetBlockInventory) {
     if (!isInvalidInventory(targetBlockInventory)) {
       BlockState targetState = targetBlockInventory.getState();
       if (targetState instanceof InventoryHolder) {
@@ -204,7 +204,7 @@ public class UtilCheckBlock {
     }
   }
 
-  public void moveItemInInventory(@Nonnull Block sourceBlock, @Nonnull int[] sourceSlots,
+  public static void moveItemInInventory(@Nonnull Block sourceBlock, @Nonnull int[] sourceSlots,
       @Nonnull Block targetBlockInventory) {
     if (!isInvalidInventory(targetBlockInventory)) {
       BlockState targetState = targetBlockInventory.getState();
@@ -222,7 +222,7 @@ public class UtilCheckBlock {
     }
   }
 
-  public void moveItemInInventorySyncTask(@Nonnull Plugin plugin, @Nonnull Block sourceBlock,
+  public static void moveItemInInventorySyncTask(@Nonnull Plugin plugin, @Nonnull Block sourceBlock,
       @Nonnull int[] sourceSlots, @Nonnull Block targetBlockInventory) {
     if (!isInvalidInventory(targetBlockInventory)) {
       BlockState targetState = targetBlockInventory.getState();
@@ -236,7 +236,7 @@ public class UtilCheckBlock {
     }
   }
 
-  public boolean isInvalidInventory(@Nonnull Block block) {
+  public static boolean isInvalidInventory(@Nonnull Block block) {
     Material type = block.getType();
     switch (type) {
       case CHEST:
