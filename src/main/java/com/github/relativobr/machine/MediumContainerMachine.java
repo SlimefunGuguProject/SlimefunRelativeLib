@@ -9,7 +9,11 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.NotHopperable;
 import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
+import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.implementation.handlers.SimpleBlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import java.util.ArrayList;
@@ -56,6 +60,8 @@ public class MediumContainerMachine extends AContainer implements NotHopperable,
       ItemStack[] recipe) {
     super(category, item, recipeType, recipe);
 
+    addItemHandler(onBlockBreak());
+
     new BlockMenuPreset(getId(), getItemName()) {
 
       @Override
@@ -65,7 +71,8 @@ public class MediumContainerMachine extends AContainer implements NotHopperable,
 
       @Override
       public boolean canOpen(Block b, Player p) {
-        return true;
+        return p.hasPermission("slimefun.inventory.bypass") || Slimefun.getProtectionManager()
+            .hasPermission(p, b.getLocation(), Interaction.INTERACT_BLOCK);
       }
 
       @Override
@@ -112,6 +119,23 @@ public class MediumContainerMachine extends AContainer implements NotHopperable,
 
           return array;
         }
+      }
+    };
+  }
+
+  @Nonnull
+  @Override
+  protected BlockBreakHandler onBlockBreak() {
+    return new SimpleBlockBreakHandler() {
+      public void onBlockBreak(Block b) {
+        BlockMenu inv = BlockStorage.getInventory(b);
+        if (inv != null) {
+          inv.dropItems(b.getLocation(), MediumContainerMachine.super.getInputSlots());
+          inv.dropItems(b.getLocation(), MediumContainerMachine.super.getOutputSlots());
+        }
+        progressTime.remove(b);
+        processing.remove(b);
+        progressItem.remove(b);
       }
     };
   }
