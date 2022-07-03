@@ -182,6 +182,10 @@ public class MediumContainerMachine extends AContainer implements NotHopperable,
     return this;
   }
 
+  public int getTimeProcess() {
+    return this.timeProcess;
+  }
+
   @Nonnull
   private Comparator<Integer> compareSlots(@Nonnull DirtyChestMenu menu) {
     return Comparator.comparingInt(slot -> menu.getItemInSlot(slot).getAmount());
