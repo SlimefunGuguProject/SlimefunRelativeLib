@@ -1,5 +1,6 @@
 package com.github.relativobr.recipe;
 
+import javax.annotation.Nonnull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -66,63 +67,63 @@ public class AbstractItemRecipe {
     return getMaterialOutput(1);
   }
 
-  public AbstractItemRecipe(ItemStack input, ItemStack output) {
+  public AbstractItemRecipe(@Nonnull ItemStack input, @Nonnull ItemStack output) {
     this.input = new ItemStack[]{input};
     this.output = new ItemStack[]{output};
   }
 
-  public AbstractItemRecipe(ItemStack[] input, ItemStack output) {
+  public AbstractItemRecipe(@Nonnull ItemStack[] input, @Nonnull ItemStack output) {
     this.input = input;
     this.output = new ItemStack[]{output};
   }
 
-  public AbstractItemRecipe(ItemStack input, ItemStack[] output) {
+  public AbstractItemRecipe(@Nonnull ItemStack input, @Nonnull ItemStack[] output) {
     this.input = new ItemStack[]{input};
     this.output = output;
   }
 
-  public AbstractItemRecipe(Material input, Material output) {
+  public AbstractItemRecipe(@Nonnull Material input, @Nonnull Material output) {
     this.input = new ItemStack[]{new ItemStack(input)};
     this.output = new ItemStack[]{new ItemStack(output)};
   }
 
-  public AbstractItemRecipe(ItemStack[] input, Material output) {
+  public AbstractItemRecipe(@Nonnull ItemStack[] input, @Nonnull Material output) {
     this.input = input;
     this.output = new ItemStack[]{new ItemStack(output)};
   }
 
-  public AbstractItemRecipe(Material input, ItemStack[] output) {
+  public AbstractItemRecipe(@Nonnull Material input, @Nonnull ItemStack[] output) {
     this.input = new ItemStack[]{new ItemStack(input)};
     this.output = output;
   }
 
-  public AbstractItemRecipe(ItemStack input, Material output) {
+  public AbstractItemRecipe(@Nonnull ItemStack input, @Nonnull Material output) {
     this.input = new ItemStack[]{input};
     this.output = new ItemStack[]{new ItemStack(output)};
   }
 
-  public AbstractItemRecipe(Material input, ItemStack output) {
+  public AbstractItemRecipe(@Nonnull Material input, @Nonnull ItemStack output) {
     this.input = new ItemStack[]{new ItemStack(input)};
     this.output = new ItemStack[]{output};
   }
 
-  public AbstractItemRecipe(ItemStack input1, ItemStack input2, ItemStack output1, ItemStack output2) {
+  public AbstractItemRecipe(@Nonnull ItemStack input1, ItemStack input2, @Nonnull ItemStack output1, ItemStack output2) {
     this.input = new ItemStack[]{input1, input2};
     this.output = new ItemStack[]{output1, output2};
   }
 
-  public AbstractItemRecipe(Material input1, Material input2, Material output1, Material output2) {
-    this.input = new ItemStack[]{new ItemStack(input1), new ItemStack(input2)};
-    this.output = new ItemStack[]{new ItemStack(output1), new ItemStack(output2)};
+  public AbstractItemRecipe(@Nonnull Material input1, Material input2, @Nonnull Material output1, Material output2) {
+    this.input = new ItemStack[]{new ItemStack(input1), (input2 == null) ? null : new ItemStack(input2)};
+    this.output = new ItemStack[]{new ItemStack(output1), (output2 == null) ? null : new ItemStack(output2)};
   }
 
-  public AbstractItemRecipe(ItemStack input1, ItemStack input2, Material output1, Material output2) {
+  public AbstractItemRecipe(@Nonnull ItemStack input1, ItemStack input2, @Nonnull Material output1, Material output2) {
     this.input = new ItemStack[]{input1, input2};
-    this.output = new ItemStack[]{new ItemStack(output1), new ItemStack(output2)};
+    this.output = new ItemStack[]{new ItemStack(output1), (output2 == null) ? null : new ItemStack(output2)};
   }
 
-  public AbstractItemRecipe(Material input1, Material input2, ItemStack output1, ItemStack output2) {
-    this.input = new ItemStack[]{new ItemStack(input1), new ItemStack(input2)};
+  public AbstractItemRecipe(@Nonnull Material input1, Material input2, @Nonnull ItemStack output1, ItemStack output2) {
+    this.input = new ItemStack[]{new ItemStack(input1), (input2 == null) ? null : new ItemStack(input2)};
     this.output = new ItemStack[]{output1, output2};
   }
 
