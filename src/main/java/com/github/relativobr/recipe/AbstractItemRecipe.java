@@ -24,7 +24,7 @@ public class AbstractItemRecipe {
   }
 
   public ItemStack getItemOutput(int index) {
-    return input[index];
+    return output[index];
   }
 
   public Material getMaterialInput(int index) {
