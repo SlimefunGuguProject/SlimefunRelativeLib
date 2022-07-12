@@ -13,9 +13,9 @@ public final class InventoryRecipe {
       18, 19, 20, 21, 22, 23, 24, 25, 26,
       27, 28, 29, 30, 31, 32, 33, 34, 35,
       36, 37, 38, 39, 40, 41, 42, 43, 44,
-      45, 46, 47, 48, 49, 50, 51, 52
+      45, 46, 47, 48, 49, 50, 51, 52, 53
   };
-  public static final int[] NO_INV = {53};
+  public static final int[] NO_INV = {};
 
   //template chest
   //0,   1,  2,  3,  4,  5,  6,  7,  8
@@ -30,22 +30,21 @@ public final class InventoryRecipe {
   public static final int[] SIMPLE_BORDER = {
       0, 1, 2, 3, 4, 5, 6, 7, 8,
       12, 13, 14,
-      22, 23,
+      21, 23,
       30, 31, 32,
-      36, 37, 38, 39, 40, 41, 42, 43, 44,
-      45, 46, 47, 48, 49, 50, 51, 52, 53
+      36, 37, 38, 39, 40, 41, 42, 43, 44
   };
-  public static final int SIMPLE_STATUS_SLOT = 21;
+  public static final int SIMPLE_STATUS_SLOT = 22;
   public static final int[] SIMPLE_INPUT = {19};
   public static final int[] SIMPLE_INPUT_BORDER = {
       9, 10, 11,
-      18, 20,
+      18,     20,
       27, 28, 29
   };
   public static final int[] SIMPLE_OUTPUT = {25};
   public static final int[] SIMPLE_OUTPUT_BORDER = {
       15, 16, 17,
-      24, 26,
+      24,     26,
       33, 34, 35
   };
 
@@ -56,8 +55,7 @@ public final class InventoryRecipe {
       13, 14,
       23,
       31, 32,
-      36, 37, 38, 39, 40, 41, 42, 43, 44,
-      45, 46, 47, 48, 49, 50, 51, 52, 53
+      36, 37, 38, 39, 40, 41, 42, 43, 44
   };
   public static final int DOUBLE_STATUS_SLOT = 22;
   public static final int[] DOUBLE_INPUT = {19, 20};
@@ -79,8 +77,7 @@ public final class InventoryRecipe {
       0, 1, 2, 3, 4, 5, 6, 7, 8,
       14,
       32,
-      36, 37, 38, 39, 40, 41, 42, 43, 44,
-      45, 46, 47, 48, 49, 50, 51, 52, 53
+      36, 37, 38, 39, 40, 41, 42, 43, 44
   };
   public static final int TRIPLE_STATUS_SLOT = 23;
   public static final int[] TRIPLE_INPUT = {19, 20, 21};
@@ -111,17 +108,47 @@ public final class InventoryRecipe {
       28, 29, 30
   };
   public static final int[] MEDIUM_INPUT_BORDER = {
-      0, 1, 2, 3, 4,
-      9, 13,
-      18, 22,
-      27, 31,
+      0,  1,  2,  3,  4,
+      9,             13,
+      18,            22,
+      27,            31,
       36, 37, 38, 39, 40
   };
   public static final int[] MEDIUM_OUTPUT = {25};
   public static final int[] MEDIUM_OUTPUT_BORDER = {
       15, 16, 17,
-      24, 26,
+      24,     26,
       33, 34, 35
+  };
+
+
+  //CRAFT OUTPUT SIZE 9 (3X3)
+  public static final int[] INVERT_MEDIUM_BORDER = {
+      0,   1,  2,  3,
+                  12,
+                  30,
+      36, 37, 38, 39
+  };
+  public static final int INVERT_MEDIUM_STATUS_SLOT = 21;
+  public static final int[] INVERT_MEDIUM_INPUT = {
+      19
+  };
+  public static final int[] INVERT_MEDIUM_INPUT_BORDER = {
+      9,  10, 11,
+      18,      20,
+      27, 28, 29
+  };
+  public static final int[] INVERT_MEDIUM_OUTPUT = {
+      14, 15, 16,
+      23, 24, 25,
+      32, 33, 34
+  };
+  public static final int[] INVERT_MEDIUM_OUTPUT_BORDER = {
+      4,  5,  6,  7,  8,
+      13,              17,
+      22,              26,
+      31,              35,
+      40, 41, 42, 43, 44
   };
 
 
@@ -141,12 +168,40 @@ public final class InventoryRecipe {
       45, 46, 47, 48, 49, 50
   };
   public static final int[] LARGE_INPUT_BORDER = {};
-  public static final int[] LARGE_OUTPUT = {43};
+  public static final int[] LARGE_OUTPUT = {
+      43
+  };
   public static final int[] LARGE_OUTPUT_BORDER = {
       33, 34, 35,
-      42, 44,
+      42,   44,
       51, 52, 53
   };
+
+  //CRAFT OUTPUT SIZE 36 (6x6)
+  public static final int[] INVERT_LARGE_BORDER = {
+     27, 28,29,
+     36,    38,
+     45, 46,47
+  };
+  public static final int INVERT_LARGE_STATUS_SLOT = 37;
+  public static final int[] INVERT_LARGE_INPUT = {
+      10
+  };
+  public static final int[] INVERT_LARGE_INPUT_BORDER = {
+      0,  1, 2,
+      9,     11,
+      18, 19,20,
+
+  };
+  public static final int[] INVERT_LARGE_OUTPUT = {
+      3,  4,  5,  6,  7,  8,
+      12, 13, 14, 15, 16, 17,
+      21, 22, 23, 24, 25, 26,
+      30, 31, 32, 33, 34, 35,
+      39, 40, 41, 42, 43, 44,
+      48, 49, 50, 51, 52, 53
+  };
+  public static final int[] INVERT_LARGE_OUTPUT_BORDER = {};
 
   //CRAFT QUARRY MACHINE
   public static final int[] QUARRY_BORDER = {
@@ -210,9 +265,6 @@ public final class InventoryRecipe {
 
   //techgerator
   public static final int[] TECH_GENERATOR_BORDER = new int[] {
-
-
-
       27, 28, 29, 30,
       36,     38, 39,
       45, 46, 47, 48

@@ -13,10 +13,10 @@ import org.bukkit.inventory.ItemStack;
 /**
  * Machine that uses only 1 item in the input and only 1 item in the output
  */
-public class SimpleItemContainerMachine extends MediumContainerMachine {
+public class SimpleItemWithLargeContainerMachine extends MediumContainerMachine {
 
     @ParametersAreNonnullByDefault
-    protected SimpleItemContainerMachine(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+    protected SimpleItemWithLargeContainerMachine(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
     }
 
@@ -38,32 +38,32 @@ public class SimpleItemContainerMachine extends MediumContainerMachine {
 
     @Override
     public int[] getInputSlots() {
-        return InventoryRecipe.SIMPLE_INPUT;
+        return InventoryRecipe.INVERT_LARGE_INPUT;
     }
 
     @Override
     public int[] getOutputSlots() {
-        return InventoryRecipe.SIMPLE_OUTPUT;
+        return InventoryRecipe.INVERT_LARGE_OUTPUT;
     }
 
     @Override
     public int getStatusSlot(){
-        return InventoryRecipe.SIMPLE_STATUS_SLOT;
+        return InventoryRecipe.INVERT_LARGE_STATUS_SLOT;
     }
 
     @Override
     public int[] getBorderSlots(){
-        return InventoryRecipe.SIMPLE_BORDER;
+        return InventoryRecipe.INVERT_LARGE_BORDER;
     }
 
     @Override
     public int[] getInputBorderSlots(){
-        return InventoryRecipe.SIMPLE_INPUT_BORDER;
+        return InventoryRecipe.INVERT_LARGE_INPUT_BORDER;
     }
 
     @Override
     public int[] getOutputBorderSlots(){
-        return InventoryRecipe.SIMPLE_OUTPUT_BORDER;
+        return InventoryRecipe.INVERT_LARGE_OUTPUT_BORDER;
     }
 
 }
