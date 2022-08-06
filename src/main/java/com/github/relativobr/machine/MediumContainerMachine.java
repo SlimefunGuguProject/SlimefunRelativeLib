@@ -311,21 +311,26 @@ public class MediumContainerMachine extends AContainer implements NotHopperable,
         return;
       }
 
+      int sizeProcessInput = getSizeProcessInput();
+      if(sizeProcessInput == -1){
+        sizeProcessInput = machineRecipe.getInput().length;
+      }
+
       if ((ticksLeft == ticks) && (ticksLeft > 0) && this.takeCharge(b.getLocation())) {
 
         startProcessTicks(b, inv, ticks, ticksLeft, result[0]);
 
-      } else if ((ticksLeft <= 0) && (processItem >= getSizeProcessInput()) && this.takeCharge(b.getLocation())) {
+      } else if ((ticksLeft <= 0) && (processItem >= sizeProcessInput) && this.takeCharge(b.getLocation())) {
 
         endProcessTicks(b, inv, result);
 
-      } else if ((ticksLeft <= 0) && (processItem < getSizeProcessInput()) && this.takeCharge(b.getLocation())) {
+      } else if ((ticksLeft <= 0) && (processItem < sizeProcessInput) && this.takeCharge(b.getLocation())) {
 
-        checkMaterialProgress(b, inv, machineRecipe, processItem, ticks, ticksLeft, result);
+        checkMaterialProgress(b, inv, machineRecipe, processItem, sizeProcessInput, ticks, ticksLeft, result);
 
       } else {
 
-        processTicks(b, inv, machineRecipe, processItem, ticks, ticksLeft, result);
+        processTicks(b, inv, machineRecipe, processItem, sizeProcessInput, ticks, ticksLeft, result);
 
       }
 
@@ -353,7 +358,7 @@ public class MediumContainerMachine extends AContainer implements NotHopperable,
   }
 
   private void processTicks(Block b, BlockMenu inv, MachineRecipe machineRecipe, int processItem,
-      int ticks, int ticksLeft, ItemStack[] result) {
+      int sizeProcessInput, int ticks, int ticksLeft, ItemStack[] result) {
     final ItemStack[] recipeInput = machineRecipe.getInput();
     if (((ticksLeft < ticks) && (ticksLeft > 0)) && this.takeCharge(b.getLocation())) {
       int time = ticksLeft - this.getSpeed();
@@ -364,7 +369,7 @@ public class MediumContainerMachine extends AContainer implements NotHopperable,
       ChestMenuUtils.updateProgressbar(inv, getStatusSlot(), ticksLeft, ticks,
           result[0]);
 
-      if (processItem < getSizeProcessInput() && recipeInput[processItem] != null) {
+      if (processItem < sizeProcessInput && recipeInput[processItem] != null) {
         ItemStack itemStack = recipeInput[processItem];
         if (consumeItem(b, itemStack)) {
           progressItem.put(b, processItem + 1);
@@ -398,9 +403,9 @@ public class MediumContainerMachine extends AContainer implements NotHopperable,
   }
 
   private void checkMaterialProgress(Block b, BlockMenu inv, MachineRecipe machineRecipe,
-      int processItem, int ticks, int ticksLeft, ItemStack[] result) {
+      int processItem, int sizeProcessInput, int ticks, int ticksLeft, ItemStack[] result) {
     noMaterialContinue(inv, result[0]);
-    for (int i = processItem; i < getSizeProcessInput(); i++) {
+    for (int i = processItem; i < sizeProcessInput; i++) {
       ItemStack itemStack = machineRecipe.getInput()[i];
       if (consumeItem(b, itemStack)) {
         if (ticksLeft > 0) {
@@ -438,6 +443,12 @@ public class MediumContainerMachine extends AContainer implements NotHopperable,
     for (AbstractItemRecipe recipe : machineRecipes) {
 
       ItemStack[] recipeInput = recipe.getInput();
+      int sizeProcessInput = getSizeProcessInput();
+
+      if(sizeProcessInput == -1){
+        recipeInput = recipe.getInputNotNull();
+        sizeProcessInput = recipeInput.length;
+      }
 
       int foundSize = 0;
       for (ItemStack itemStack : recipeInput) {
@@ -449,7 +460,7 @@ public class MediumContainerMachine extends AContainer implements NotHopperable,
         }
       }
 
-      if (foundSize == getSizeProcessInput()) {
+      if (foundSize == sizeProcessInput) {
         return new MachineRecipe(timeProcess, recipeInput, recipe.getOutput());
       }
 
