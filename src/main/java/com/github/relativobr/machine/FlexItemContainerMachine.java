@@ -1,6 +1,5 @@
 package com.github.relativobr.machine;
 
-import com.github.relativobr.recipe.InventoryRecipe;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -36,36 +35,6 @@ public class FlexItemContainerMachine extends MediumContainerMachine {
     @Override
     public int getSizeProcessInput(){
         return -1;
-    }
-
-    @Override
-    public int[] getInputSlots() {
-        return InventoryRecipe.SIMPLE_INPUT;
-    }
-
-    @Override
-    public int[] getOutputSlots() {
-        return InventoryRecipe.SIMPLE_OUTPUT;
-    }
-
-    @Override
-    public int getStatusSlot(){
-        return InventoryRecipe.SIMPLE_STATUS_SLOT;
-    }
-
-    @Override
-    public int[] getBorderSlots(){
-        return InventoryRecipe.SIMPLE_BORDER;
-    }
-
-    @Override
-    public int[] getInputBorderSlots(){
-        return InventoryRecipe.SIMPLE_INPUT_BORDER;
-    }
-
-    @Override
-    public int[] getOutputBorderSlots(){
-        return InventoryRecipe.SIMPLE_OUTPUT_BORDER;
     }
 
 }
