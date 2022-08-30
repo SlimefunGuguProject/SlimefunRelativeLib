@@ -1,5 +1,7 @@
 package com.github.relativobr.recipe;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.Nonnull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,6 +20,24 @@ public class AbstractItemRecipe {
 
   private ItemStack[] input;
   private ItemStack[] output;
+
+  public ItemStack[] getInputNotNull() {
+    return filterNotNull(this.getInput());
+  }
+
+  public ItemStack[] getOutputNotNull() {
+    return filterNotNull(this.getOutput());
+  }
+
+  private ItemStack[] filterNotNull(ItemStack[] array){
+    List<ItemStack> list = new ArrayList<>();
+    for (ItemStack itemStack : array) {
+      if(itemStack != null){
+        list.add(itemStack);
+      }
+    }
+    return list.toArray(new ItemStack[0]);
+  }
 
   public ItemStack getItemInput(int index) {
     return input[index];

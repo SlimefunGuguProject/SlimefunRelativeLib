@@ -61,21 +61,22 @@ public final class EnergyGenerator extends SlimefunItem implements EnergyNetProv
 
   private boolean validateLocation(Location l) {
     Block b = l.getBlock();
-    if (this.type == Type.EVERY) {
+    final Type generatorType = this.type;
+    if (generatorType == Type.EVERY) {
       return true;
-    } else if (this.type == Type.DAY) {
+    } else if (generatorType == Type.DAY) {
       return UtilCheckBlock.checkDay(b) && UtilCheckBlock.checkSky(b);
-    } else if (this.type == Type.NIGHT) {
+    } else if (generatorType == Type.NIGHT) {
       return UtilCheckBlock.checkNight(b) && UtilCheckBlock.checkSky(b);
-    } else if (this.type == Type.SKY) {
+    } else if (generatorType == Type.SKY) {
       return UtilCheckBlock.checkSky(b);
-    } else if (this.type == Type.FIRE) {
+    } else if (generatorType == Type.FIRE) {
       return UtilCheckBlock.checkUnderFire(b);
-    } else if (this.type == Type.WATER) {
+    } else if (generatorType == Type.WATER) {
       return UtilCheckBlock.checkUnderWater(b);
-    } else if (this.type == Type.WIND) {
+    } else if (generatorType == Type.WIND) {
       return UtilCheckBlock.checkWind(b);
-    } else if (this.type == Type.DARK) {
+    } else if (generatorType == Type.DARK) {
       return UtilCheckBlock.checkDark(b);
     }
     return false;
